@@ -1,0 +1,143 @@
+﻿<Window x:Class="VOR.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:properties="clr-namespace:VOR.Properties"
+        mc:Ignorable="d"
+        Title="Программа для формирования ВОР"
+        ResizeMode="CanResize"
+        MinWidth="800" Width="1000"
+        MinHeight ="240" MaxHeight="240"
+        FontFamily="Arial" FontSize="16"
+        Background="Gray" Closed="Window_Closed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="spec_button" Grid.Row="0" Grid.Column="0" MinHeight="30" MinWidth="180"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                Content="Спецификация" Click="Spec_button_Click"/>
+        <TextBox x:Name="spec_box" Grid.Row="0" Grid.Column="1"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"/>
+        <ProgressBar x:Name="spec_pb" Grid.Row="0" Grid.Column="2"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5">
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid>
+                        <Border Background="LightGray" BorderBrush="DimGray" BorderThickness="2">
+                            <Rectangle HorizontalAlignment="Left" Fill="LimeGreen">
+                                <Rectangle.Width>
+                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </Rectangle.Width>
+                            </Rectangle>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <TextBlock x:Name="spec_block" Grid.Row="0" Grid.Column="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Padding="5"
+                   Text="Ожидание" TextAlignment="Center"/>
+
+        <Button x:Name="kzh_button" Grid.Row="1" Grid.Column="0" MinHeight="30" MinWidth="180"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                Content="Кабельнотрубный журнал" Click="Kzh_button_Click"/>
+        <TextBox x:Name="kzh_box" Grid.Row="1" Grid.Column="1"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"/>
+        <ProgressBar x:Name="kzh_pb" Grid.Row="1" Grid.Column="2"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5">
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid>
+                        <Border Background="LightGray" BorderBrush="DimGray" BorderThickness="2">
+                            <Rectangle HorizontalAlignment="Left" Fill="LimeGreen">
+                                <Rectangle.Width>
+                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </Rectangle.Width>
+                            </Rectangle>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <TextBlock x:Name="kzh_block" Grid.Row="1" Grid.Column="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Padding="5"
+                   Text="Ожидание" TextAlignment="Center"/>
+
+        <Button x:Name="pnr_button" Grid.Row="2" Grid.Column="0" MinHeight="30" MinWidth="180"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                Content="Пусконаладочные работы" Click="Pnr_button_Click"/>
+        <TextBox x:Name="pnr_box" Grid.Row="2" Grid.Column="1"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"/>
+        <ProgressBar x:Name="pnr_pb" Grid.Row="2" Grid.Column="2"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5">
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid>
+                        <Border Background="LightGray" BorderBrush="DimGray" BorderThickness="2">
+                            <Rectangle HorizontalAlignment="Left" Fill="LimeGreen">
+                                <Rectangle.Width>
+                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </Rectangle.Width>
+                            </Rectangle>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <TextBlock x:Name="pnr_block" Grid.Row="2" Grid.Column="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Padding="5"
+                   Text="Ожидание" TextAlignment="Center"/>
+
+        <TextBlock x:Name="atr_block" Grid.Row="3" Grid.Column="0"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Padding="5"
+                   Text="Атрибуты заголовков" TextAlignment="Center"/>
+        <TextBox x:Name="atr_box" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                 Text="{Binding Source={x:Static properties:Settings.Default}, Path=Atributes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <ComboBox x:Name="combo_box" Grid.Row="4" Grid.Column="0" Width="80"
+                  HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                  SelectedItem="{Binding Source={x:Static properties:Settings.Default}, Path=Department, Mode=TwoWay}">
+            <ComboBox.Items>
+                <sys:String>ЭТО</sys:String>
+                <sys:String>ОАТП</sys:String>
+            </ComboBox.Items>  
+        </ComboBox>
+        <Button x:Name="go_button" Grid.Row="4" Grid.Column="1" MinHeight="30" MinWidth="180"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5"
+                Content="Сформировать ВОР" Click="Go_button_Click"/>
+        <ProgressBar x:Name="go_pb" Grid.Row="4" Grid.Column="2"
+                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5" Padding="5">
+            <ProgressBar.Template>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid>
+                        <Border Background="LightGray" BorderBrush="DimGray" BorderThickness="2">
+                            <Rectangle HorizontalAlignment="Left" Fill="LimeGreen">
+                                <Rectangle.Width>
+                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}" />
+                                </Rectangle.Width>
+                            </Rectangle>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </ProgressBar.Template>
+        </ProgressBar>
+        <TextBlock x:Name="go_block" Grid.Row="4" Grid.Column="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Padding="5"
+                   Text="Ожидание" TextAlignment="Center"/>
+    </Grid>
+</Window>
