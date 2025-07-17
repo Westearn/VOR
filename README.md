@@ -14,7 +14,7 @@
 ## Результат
 Результатом работы программы является файл docx с полным перечнем монтажных и строительных работ.
 
-<img width="800" alt="КЖ" src="https://github.com/Westearn/VOR/assets/108264649/56226599-069c-4e5c-81b5-73ef80bbbd49">
+<img width="1111" height="671" alt="Результат работы" src="https://github.com/user-attachments/assets/12e2d20f-a3ad-465c-a576-7d56dadbdd0d">
 
 ### Особенности проекта
 1. Работа с большим объемом данных в Excel, Word;
